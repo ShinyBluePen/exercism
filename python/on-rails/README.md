@@ -1,0 +1,1 @@
+A lot of pre-construction here and mostly just teaching concepts.  Fine exercises, but the real value is in the consitently thorough documentation and documentation style as a learning tool and scaffold.  Otherwise, these are being included for completeness.
