@@ -105,9 +105,12 @@ def separate_appetizers(dishes, appetizers):
 def singleton_ingredients(dishes: list[set[str]], intersection) -> set[str]:
     """
 
-    :param intersection: constant - one of 
-        (VEGAN_INTERSECTION,VEGETARIAN_INTERSECTION,PALEO_INTERSECTION,
-         KETO_INTERSECTION,OMNIVORE_INTERSECTION).
+    :param intersection: constant - One of 
+        (VEGAN_INTERSECTION,
+        VEGETARIAN_INTERSECTION,
+        PALEO_INTERSECTION,
+        KETO_INTERSECTION,
+        OMNIVORE_INTERSECTION).
     :param dishes: list[set[str]] - List of ingredient sets.
     :return: set[str] - Set of singleton ingredients.
 
