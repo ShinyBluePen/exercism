@@ -17,5 +17,6 @@ def total() -> int:
     """Return the total of all grains of rice on a chessboard where the 
     grains double on each successive square.
     
-    :return int: - All rice grains."""
+    :return int: - All rice grains.
+    """
     return (1 << 64) - 1
