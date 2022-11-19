@@ -15,3 +15,8 @@ def convert(number: int) -> str:
     if number % 7 == 0: raindrops.append("Plong")
 
     return "".join(raindrops) if len(raindrops) else str(number)
+
+    # # credit to @yawpitch
+    # # https://exercism.org/tracks/python/exercises/raindrops/solutions/yawpitch
+    # DROPS = ("i", 3), ("a", 5), ("o", 7)
+    # return "".join(f"Pl{i}ng" for i, divisor in DROPS if not (number % divisor)) or str(number)
