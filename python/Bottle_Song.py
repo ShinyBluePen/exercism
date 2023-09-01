@@ -3,8 +3,7 @@
 https://exercism.org/tracks/python/exercises/bottle-song
 """
 
-_num_words = "no one two three four five six seven eight nine ten".split()
-NUM_TO_WORD = {num: word for word, num in zip(_num_words, range(len(_num_words)))}
+NUMBERS = "No One Two Three Four Five Six Seven Eight Nine Ten".split()
     
 def recite(start: int=10, take: int=1) -> list[str]:
     """Sing the popular children's song, "Ten Green Bottles".
@@ -16,19 +15,20 @@ def recite(start: int=10, take: int=1) -> list[str]:
     :return: - The collection of verses from each decrement of the `take` from the `start`.
     """
     if start > 10: raise ValueError("Too many bottles on the shelf!")
-    song = []
-    for bottles in range(start, 0, -1):
-        take -= 1
-        song += [
-            f"{NUM_TO_WORD[bottles].title()} green bottle{'' if bottles == 1 else 's'} hanging on the wall,",
-            f"{NUM_TO_WORD[bottles].title()} green bottle{'' if bottles == 1 else 's'} hanging on the wall,",
-            f"And if one green bottle should accidentally fall,",
-            f"There'll be {NUM_TO_WORD[bottles-1]} green bottle{'' if bottles-1 == 1 else 's'} hanging on the wall."
-        ]
+    
+    out = []
+    for i in range(start, start - take, -1):
+        out.append(f"{bottles(i)} hanging on the wall,")
+        out.append(f"{bottles(i)} hanging on the wall,")
+        out.append("And if one green bottle should accidentally fall,")
+        out.append(f"There'll be {bottles(i - 1).lower()} hanging on the wall.")
+        out.append("")
         
-        if take: 
-            song.append("")
-        else: 
-            break
+    return out[:-1]
 
-    return song
+def bottles(num: int) -> str:
+    """Return the bottle term."""
+    out = f"{NUMBERS[num]} green bottle"
+    if num != 1:
+        out += "s"
+    return out
