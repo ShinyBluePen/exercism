@@ -4,74 +4,53 @@ https://exercism.org/tracks/python/exercises/little-sisters-vocab
 """
 
 def add_prefix_un(word: str) -> str:
-    """
- 
-    :param word: str - Stringof a root word.
-    :return: str - String of root word with un prefix.
- 
+    """Prepend "un" to a string.
+
+    :param word: - String of a root word.
+    :return: - String of root word with un prefix.
+
     This function takes `word` as a parameter and
     returns a new word with an 'un' prefix.
     """
-    
     return f"un{word}"
-  
-def make_word_groups(vocab_words: list[str, ...]) -> str:
-    """
- 
-    :param vocab_words: list[str, ...] - List of vocabulary words with a prefix.
-    :return: str - String of prefix followed by vocabulary words with
-             prefix applied, separated by ' :: '.
- 
+
+
+def make_word_groups(vocab_words: list[str]) -> str:
+    """Apply the prefix in `vocab_words` to the rest of the words in `vocab_words`.
+
+    :param vocab_words: - A list of vocabulary words with a prefix.
+    :return: - String of prefix followed by vocabulary words with
+               prefix applied, separated by ' :: '.
+
     This function takes a `vocab_words` list and returns a string
     with the prefix  and the words with prefix applied, separated
-     by ' :: '.
+    by ' :: '.
     """
     pfx = vocab_words[0]
-    prefixed_list = [pfx]
+    return " :: ".join(f"{pfx}{word}" if word != pfx else pfx for word in vocab_words)
     
-    for word in vocab_words[1::]:
-        word = pfx + word
-        prefixed_list.append(word)
-    
-    return " :: ".join(prefixed_list)
-  
+
 def remove_suffix_ness(word: str) -> str:
-    """
- 
-    :param word: str - String of word to remove suffix from.
-    :return: str - String of word with suffix removed & spelling adjusted.
- 
+    """Remove the suffic "ness" from a word.
+
+    :param word: - String of word to remove suffix from.
+    :return: - String of word with suffix removed & spelling adjusted.
+
     This function takes in a word and returns the base word with `ness` removed.
     """
-    sfx = "ness"
-    if sfx in word:
-        if word[-5] == "i":
-            word = word[:-5] + "y"
-        else:
-            word = word[:-4]
-        
-        return word
-      
+    return f"{word[:-5]}y" if word[-5] == "i" else word[:-4]
+
+
 def adjective_to_verb(sentence: str, index: int) -> str:
-    """
- 
-    :param sentence: str - string that uses the word in sentence.
-    :param index: int - index of the word to remove and transform.
-    :return: str - string word that changes the extracted adjective to a verb.
- 
-    A function takes a `sentence` using the
-    vocabulary word, and the `index` of the word once that sentence
-    is split apart.  The function should return the extracted
-    adjective as a verb.
-    """
-    if "." in sentence:
-        sentence = sentence[:-1]
-        sentence = sentence.split()
-    else:
-        sentence = sentence.split()
+    """Add "en" to a target word in a sentence.
+
+    :param sentence: - A sentence.
+    :param index: - Index of the word to remove and transform.
+    :return: - Word that changes the extracted adjective to a verb.
+
+    A function takes a `sentence` using the vocabulary word, and the 
+    `index` of the word once that sentence is split apart.  The 
+    function should return the extracted adjective as a verb.
+    """    
+    return f"{sentence[:-1].split()[index]}en"
     
-    adj = sentence[index]
-    verbed_abj = adj + "en"
-    
-    return verbed_abj
-  
