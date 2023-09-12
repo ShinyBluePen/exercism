@@ -1,15 +1,15 @@
-""" Meltdown Mitigation
+"""Meltdown Mitigation
 
 https://exercism.org/tracks/python/exercises/meltdown-mitigation
 """
 
-def is_criticality_balanced(temperature, neutrons_emitted):
+def is_criticality_balanced(temperature: int, neutrons_emitted: int) -> bool:
     """Verify criticality is balanced.
- 
-    :param temperature: temperature value in kelvin (integer or float)
-    :param neutrons_emitted: number of neutrons emitted per second (integer or float)
-    :return: boolean True if conditions met, False if not
- 
+
+    :param temperature: - Temperature value in kelvin.
+    :param neutrons_emitted: - Number of neutrons emitted per second.
+    :return: - True if conditions met.
+
     A reactor is said to be critical if it satisfies the following conditions:
     - The temperature is less than 800 K.
     - The number of neutrons emitted per second is greater than 500.
@@ -17,62 +17,56 @@ def is_criticality_balanced(temperature, neutrons_emitted):
     """
     t_n_product = temperature * neutrons_emitted
     
-    if temperature < 800 and neutrons_emitted > 500 and t_n_product < 500000:
-        return True
-    else:
-        return False
-      
-def reactor_efficiency(voltage, current, theoretical_max_power):
+    return temperature < 800 and neutrons_emitted > 500 and t_n_product < 500000
+
+
+def reactor_efficiency(voltage: int, current: int, theoretical_max_power: int) -> str:
     """Assess reactor efficiency zone.
- 
-    :param voltage: voltage value (integer or float)
-    :param current: current value (integer or float)
-    :param theoretical_max_power: power that corresponds to a 100% efficiency (integer or float)
-    :return: str one of 'green', 'orange', 'red', or 'black'
- 
+
+    :param voltage: - Voltage value.
+    :param current: = Current value.
+    :param theoretical_max_power: - Power that corresponds to a 100% efficiency.
+    :return: - .One of 'green', 'orange', 'red', or 'black'.
+
     Efficiency can be grouped into 4 bands:
- 
+
     1. green -> efficiency of 80% or more,
     2. orange -> efficiency of less than 80% but at least 60%,
     3. red -> efficiency below 60%, but still 30% or more,
     4. black ->  less than 30% efficient.
- 
+
     The percentage value is calculated as
     (generated power/ theoretical max power)*100
     where generated power = voltage * current
     """
-    
     generated_power = voltage * current
-    efficiency = (generated_power/ theoretical_max_power)*100
+    efficiency = (generated_power/ theoretical_max_power) * 100
     
     if efficiency >= 80:
         return "green"
-    elif efficiency < 80 and efficiency >= 60:
+    if 80 > efficiency >= 60:
         return "orange"
-    elif efficiency < 60 and efficiency >= 30:
+    if 60 > efficiency >= 30:
         return "red"
-    else:
-        return "black"
-      
-def fail_safe(temperature, neutrons_produced_per_second, threshold):
+    return "black"
+
+
+def fail_safe(temperature: int, neutrons_produced_per_second: int, threshold: int) -> str:
     """Assess and return status code for the reactor.
- 
-    :param temperature: value of the temperature in kelvin (integer or float)
-    :param neutrons_produced_per_second: neutron flux (integer or float)
-    :param threshold: threshold (integer or float)
-    :return: str one of: 'LOW', 'NORMAL', 'DANGER'
- 
+
+    :param temperature: - Value of the temperature in kelvin.
+    :param neutrons_produced_per_second: - Neutron flux.
+    :param threshold: - Threshold.
+    :return: - One of: 'LOW', 'NORMAL', 'DANGER'
+
     - `temperature * neutrons per second` < 90% of `threshold` == 'LOW'
     - `temperature * neutrons per second` +/- 10% of `threshold` == 'NORMAL'
     - `temperature * neutrons per second` is not in the above-stated ranges ==  'DANGER'
     """
     t_nps_product = temperature * neutrons_produced_per_second
-    threshhold_upper = threshold * 1.1
-    threshhold_lower = threshold * 0.9
-    
-    if t_nps_product > threshhold_upper:
+
+    if t_nps_product > threshold * 1.1:
         return "DANGER"
-    elif t_nps_product < threshhold_lower:
+    if t_nps_product < threshold * 0.9:
         return "LOW"
-    else:
-        return "NORMAL"
+    return "NORMAL"
