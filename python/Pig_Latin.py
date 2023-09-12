@@ -32,12 +32,8 @@ def oink(word: str) -> str:
         return f"{word}ay"
         
     # consonant and consonant cluster words
-    cluster = ""
     for i, c in enumerate(w):
         # check for vowels and the "qu" special cluster
-        if c not in VOWELS or w[i-1:i+1] == "QU":
-            cluster += word[i]
-        else:
-            break 
+        if c in VOWELS and w[i-1:i+1] != "QU":
+            return f"{word[i:]}{word[:i]}ay"
             
-    return f"{word[len(cluster):]}{cluster}ay"
