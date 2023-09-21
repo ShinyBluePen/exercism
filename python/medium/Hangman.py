@@ -37,7 +37,7 @@ class Hangman:
         Return the current status of the game, which can be 'win', 'lose', or 'ongoing'.
     """
     def __init__(self, word: str):
-        self.word = word
+        self.word = word.lower()
         self.guesses = set()
         self.remaining_guesses = 9
         self.status = STATUS_ONGOING
