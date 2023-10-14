@@ -10,7 +10,9 @@ def sum_of_multiples(limit: int, multiples: list[int]) -> int:
     :param multiples: - Only numbers which evenly divide by values in `multiples` will be summed.
     :return: - The sum of all unique multiples from `multiples` of numbers in the `limit` range.
     """
-    return sum({n for n in range(limit) 
-                  for f in multiples 
-                  if f 
-                  and n%f == 0})
+    return sum(
+        {n for n in range(limit) 
+         for f in multiples 
+         if f 
+         and n%f == 0}
+    )
