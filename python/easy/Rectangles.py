@@ -6,7 +6,6 @@ Credit to @baltic-tea
 I cleaned it up a bit and added comments to easily track what was happening on each line.
 https://exercism.org/tracks/python/exercises/rectangles/solutions/baltic-tea
 """
-
 def rectangles(strings: list[str]) -> int:
     """Count # of rectangles present in an ASCII diagram given as a matrix of strings.
     
