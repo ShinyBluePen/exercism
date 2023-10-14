@@ -13,4 +13,3 @@ def transpose(matrix: str) -> str:
     """
     trans = zip_longest(*matrix.splitlines(), fillvalue="·")
     return "\n".join(["".join(row).rstrip("·").replace("·", " ") for row in trans])
-    
