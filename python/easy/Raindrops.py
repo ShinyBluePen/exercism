@@ -2,7 +2,6 @@
 
 https://exercism.org/tracks/python/exercises/raindrops
 """
-
 def convert(number: int) -> str:
     """Return rain sounds determined by the given `number` if the number matches certain criteria.
     
